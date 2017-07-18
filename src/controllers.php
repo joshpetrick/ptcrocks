@@ -27,7 +27,7 @@ $app->get('/transfer', function () use ($app) {
 $app->post('/transfer', function (Request $request) use ($app) {
     $amount = $request->get('amount');
     $address = $request->get('address');
-    return $app['twig']->render('transfer_complete.html.twig', array('amount'=>$amount, 'address'=>$address));
+    return $app['twig']->render('transfer_complete.html.twig', array('balance'=>1028.208, 'amount'=>$amount, 'address'=>$address));
 })
 ->bind('transfer_coins_post');
 
