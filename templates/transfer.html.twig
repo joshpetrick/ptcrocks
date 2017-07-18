@@ -13,14 +13,14 @@
 
     <div class="row">
         <div class="col-md-12" style="text-align: center; margin-bottom: 50px;">
-            <h1>Balance: {{ balance }} CHC</h1>
+            <h1>{{ balance }} CHC</h1>
         </div>
     </div>
 
     <!-- Example row of columns -->
     <div class="row">
         <div class="col-md-12">
-            <form class="form-horizontal">
+            <form class="form-horizontal" action="/transfer" method="POST">
                 <fieldset>
                     <!-- Text input-->
                     <div class="form-group">
@@ -43,8 +43,8 @@
                     <!-- Button -->
                     <div class="form-group">
                         <label class="col-md-4 control-label" for="submit"></label>
-                        <div class="col-md-offset-2 col-md-4">
-                            <button id="submit" name="submit" class="btn btn-primary">Transfer</button>
+                        <div class="col-md-5">
+                            <button id="submit" name="submit" class="btn btn-block btn-primary">Transfer</button>
                         </div>
                     </div>
 

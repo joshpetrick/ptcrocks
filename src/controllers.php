@@ -18,6 +18,12 @@ $app->get('/transfer', function () use ($app) {
 })
 ->bind('transfer_coins');
 
+$app->post('/transfer', function () use ($app) {
+    return $app['twig']->render('transfer.html.twig', array('balance'=>1028.208));
+})
+->bind('transfer_coins');
+
+
 $app->error(function (\Exception $e, Request $request, $code) use ($app) {
     if ($app['debug']) {
         return;
