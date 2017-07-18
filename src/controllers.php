@@ -13,13 +13,21 @@ $app->get('/', function () use ($app) {
 })
 ->bind('homepage');
 
+/**
+ * Render The Form To Transfer Coins
+ */
 $app->get('/transfer', function () use ($app) {
     return $app['twig']->render('transfer.html.twig', array('balance'=>1028.208));
 })
 ->bind('transfer_coins');
 
-$app->post('/transfer', function () use ($app) {
-    return $app['twig']->render('transfer.html.twig', array('balance'=>1028.208));
+/**
+ * Process The Form To Transfer Coins
+ */
+$app->post('/transfer', function (Request $request) use ($app) {
+    $amount = $request->get('amount');
+    $address = $request->get('address');
+    return $app['twig']->render('transfer_complete.html.twig', array('amount'=>$amount, 'address'=>$address));
 })
 ->bind('transfer_coins_post');
 

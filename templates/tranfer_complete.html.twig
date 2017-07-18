@@ -1,0 +1,31 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}Transfer Coins{% endblock %}
+
+{% block brand %}<div class="icon-chc" style="background-image: url({{ asset('png/ChainLogo.png') }}); "></div>{% endblock %}
+
+{% block jumbotron %}
+    Jumbotron
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-md-12" style="text-align: center; margin-bottom: 50px;">
+            <h1>{{ balance }} CHC</h1>
+        </div>
+    </div>
+
+    <!-- Example row of columns -->
+    <div class="row">
+        <div class="col-md-12">
+            SUCCESS?
+            Address: {{ address }}
+            Amount: {{ amount }}
+        </div>
+    </div>
+
+    <hr>
+{% endblock %}
+
