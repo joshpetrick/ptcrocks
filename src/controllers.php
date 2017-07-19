@@ -9,12 +9,6 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use ($app) {
-    $resultVar = shell_exec('sudo -u jpetrick /var/www/html/test.sh 2>&1');
-    echo $resultVar;
-    $jsonResult = json_decode($resultVar, true);
-    print_r($jsonResult);
-    echo $jsonResult['difficulty'];
-    echo $jsonResult['balance'];
     return $app['twig']->render('index.html.twig', array());
 })
 ->bind('homepage');
@@ -23,7 +17,9 @@ $app->get('/', function () use ($app) {
  * Render The Form To Transfer Coins
  */
 $app->get('/transfer', function () use ($app) {
-    return $app['twig']->render('transfer.html.twig', array('balance'=>1028.208));
+    $resultVar = shell_exec('sudo -u jpetrick /var/www/html/test.sh');
+    $jsonResult = json_decode($resultVar, true);
+    return $app['twig']->render('transfer.html.twig', array('balance'=>$jsonResult['balance']));
 })
 ->bind('transfer_coins');
 
