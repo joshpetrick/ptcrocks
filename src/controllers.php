@@ -12,7 +12,7 @@ $app->get('/', function () use ($app) {
     $chainCoinInfo = array();
     $resultVar = null;
     echo 'Result:';
-    echo exec('chaincoind getinfo', $chainCoinInfo, $resultVar);
+    echo shell_exec('chaincoind getinfo');
     print_r($chainCoinInfo);
     echo 'ResultVar:' . $resultVar;
     return $app['twig']->render('index.html.twig', array());
