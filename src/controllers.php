@@ -9,6 +9,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 //Request::setTrustedProxies(array('127.0.0.1'));
 
 $app->get('/', function () use ($app) {
+    $chainCoinInfo = array();
+    exec('chaincoind getinfo', $chainCoinInfo);
+    print_r($chainCoinInfo);
     return $app['twig']->render('index.html.twig', array());
 })
 ->bind('homepage');
