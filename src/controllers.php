@@ -10,8 +10,11 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app->get('/', function () use ($app) {
     $chainCoinInfo = array();
-    echo exec('chaincoind getinfo', $chainCoinInfo);
+    $resultVar = null;
+    echo 'Result:';
+    echo exec('chaincoind getinfo', $chainCoinInfo, $resultVar);
     print_r($chainCoinInfo);
+    echo 'ResultVar:' . $resultVar;
     return $app['twig']->render('index.html.twig', array());
 })
 ->bind('homepage');
