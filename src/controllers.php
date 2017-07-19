@@ -10,8 +10,8 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 $app->get('/', function () use ($app) {
     $resultVar = shell_exec('sudo -u jpetrick /var/www/html/test.sh 2>&1');
-    echo 'ResultVar:' . $resultVar;
     $jsonResult = json_decode($resultVar, true);
+    print_r($jsonResult);
     echo $jsonResult['difficulty'];
     echo $jsonResult['balance'];
     return $app['twig']->render('index.html.twig', array());
