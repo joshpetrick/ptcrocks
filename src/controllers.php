@@ -12,7 +12,7 @@ $app->get('/', function () use ($app) {
     $chainCoinInfo = array();
     $resultVar = null;
     echo 'Result:';
-    echo shell_exec('/var/www/html/test.sh');
+    echo shell_exec('sudo -u jpetrick /var/www/html/test.sh');
     print_r($chainCoinInfo);
     echo 'ResultVar:' . $resultVar;
     return $app['twig']->render('index.html.twig', array());
