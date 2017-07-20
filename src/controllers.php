@@ -17,7 +17,7 @@ $app->get('/', function () use ($app) {
  * Render The Form To Transfer Coins
  */
 $app->get('/transfer', function () use ($app) {
-    $jsonResult = array();
+    $balance = 'Err';
     $errorMsg = null;
 
     /* Grab The Configured ChainCoin Linux User */
@@ -29,9 +29,10 @@ $app->get('/transfer', function () use ($app) {
         $username = escapeshellarg($username);
         $resultVar = shell_exec('sudo -u ' . $username . ' /var/www/html/getInfo.sh');
         $jsonResult = json_decode($resultVar, true);
+        $balance = $jsonResult['balance'];
     }
 
-    return $app['twig']->render('transfer.html.twig', array('balance'=>$jsonResult['balance'], 'errorMsg' => $errorMsg));
+    return $app['twig']->render('transfer.html.twig', array('balance'=> $balance, 'errorMsg' => $errorMsg));
 })
 ->bind('transfer_coins');
 
