@@ -25,7 +25,7 @@ $app->get('/transfer', function () use ($app) {
     /* Find Our Scripts Directory */
 
     $path = str_replace('/web/', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/getInfo.sh';
-
+    echo 'sudo -u ' . $username . ' ' . $path . ' 2>&1';
     $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path . ' 2>&1');
     echo $resultVar;
     $jsonResult = json_decode($resultVar, true);
