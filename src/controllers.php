@@ -46,9 +46,9 @@ $app->post('/transfer', function (Request $request) use ($app) {
     $username = escapeshellarg($username);
 
     /* Find Our Scripts Directory */
-    $path = str_replace('/web', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/transferCoins.sh ' . $address . ' ' . $amount . ' 2>&1';
-
-    $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path);
+    $path = str_replace('/web', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/transferCoins.sh';
+    echo 'sudo -u ' . $username . ' ' . $path . ' ' . $address . ' ' . $amount . ' 2>&1';
+    $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path . ' ' . $address . ' ' . $amount . ' 2>&1');
 
 
     return $app['twig']->render('transfer_complete.html.twig', array('balance'=>1028.208, 'amount'=>$amount, 'address'=>$address, 'result' => $resultVar));
