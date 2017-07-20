@@ -20,6 +20,9 @@ $app->get('/transfer', function () use ($app) {
     $balance = 'Err';
     $errorMsg = null;
 
+    print_r($_ENV);
+    echo getenv('chaincoinuser');
+
     /* Grab The Configured ChainCoin Linux User */
     if(!array_key_exists('chaincoinuser', $_ENV)){
         $errorMsg = "No ChainCoin User Configured - Please Set Env Var";
