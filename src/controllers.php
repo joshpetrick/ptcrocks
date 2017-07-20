@@ -20,18 +20,11 @@ $app->get('/transfer', function () use ($app) {
     $balance = 'Err';
     $errorMsg = null;
 
-
-    /* Grab The Configured ChainCoin Linux User */
-    if(!array_key_exists('chaincoinuser', $_ENV)){
-        $errorMsg = "No ChainCoin User Configured - Please Set Env Var";
-    }
-    else{
-        $username = $app['chaincoinuser'];
-        $username = escapeshellarg($username);
-        $resultVar = shell_exec('sudo -u ' . $username . ' '. $_SERVER['DOCUMENT_ROOT'] .'../scripts/getInfo.sh');
-        $jsonResult = json_decode($resultVar, true);
-        $balance = $jsonResult['balance'];
-    }
+    $username = $app['chaincoinuser'];
+    $username = escapeshellarg($username);
+    $resultVar = shell_exec('sudo -u ' . $username . ' '. $_SERVER['DOCUMENT_ROOT'] .'../scripts/getInfo.sh');
+    $jsonResult = json_decode($resultVar, true);
+    $balance = $jsonResult['balance'];
 
     return $app['twig']->render('transfer.html.twig', array('balance'=> $balance, 'errorMsg' => $errorMsg));
 })
