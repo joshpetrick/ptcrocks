@@ -46,7 +46,7 @@ $app->post('/transfer', function (Request $request) use ($app) {
     $username = escapeshellarg($username);
 
     /* Find Our Scripts Directory */
-    $path = str_replace('/web', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/transferCoins.sh ' . $address . ' ' . $amount;
+    $path = str_replace('/web', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/transferCoins.sh ' . $address . ' ' . $amount . ' 2>&1';
 
     $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path);
 
