@@ -20,7 +20,7 @@ $app->get('/transfer', function () use ($app) {
     $balance = 'Err';
     $errorMsg = null;
 
-    print_r($_ENV);
+    print_r($_SERVER);
     echo getenv('chaincoinuser');
 
     /* Grab The Configured ChainCoin Linux User */
