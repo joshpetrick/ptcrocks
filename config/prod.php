@@ -7,4 +7,4 @@ $app['twig.options'] = array('cache' => __DIR__.'/../var/cache/twig');
 
 
 // User Running ChainCoinD
-$appp['chaincoinuser'] = 'jpetrick';
+$app['chaincoinuser'] = 'jpetrick';
