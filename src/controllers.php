@@ -22,12 +22,12 @@ $app->get('/transfer', function () use ($app) {
 
     $username = $app['chaincoinuser'];
     $username = escapeshellarg($username);
-    /* Find Our Scripts Directory */
 
+    /* Find Our Scripts Directory */
     $path = str_replace('/web', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/getInfo.sh';
-    echo 'sudo -u ' . $username . ' ' . $path . ' 2>&1';
-    $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path . ' 2>&1');
-    echo $resultVar;
+
+    $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path);
+
     $jsonResult = json_decode($resultVar, true);
     $balance = $jsonResult['balance'];
 
@@ -41,7 +41,17 @@ $app->get('/transfer', function () use ($app) {
 $app->post('/transfer', function (Request $request) use ($app) {
     $amount = $request->get('amount');
     $address = $request->get('address');
-    return $app['twig']->render('transfer_complete.html.twig', array('balance'=>1028.208, 'amount'=>$amount, 'address'=>$address));
+
+    $username = $app['chaincoinuser'];
+    $username = escapeshellarg($username);
+
+    /* Find Our Scripts Directory */
+    $path = str_replace('/web', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/transferCoins.sh ' . $address . ' ' . $amount;
+
+    $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path);
+
+
+    return $app['twig']->render('transfer_complete.html.twig', array('balance'=>1028.208, 'amount'=>$amount, 'address'=>$address, 'result' => $resultVar));
 })
 ->bind('transfer_coins_post');
 
