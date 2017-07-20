@@ -24,6 +24,7 @@ $app->get('/transfer', function () use ($app) {
     $username = escapeshellarg($username);
     echo 'sudo -u ' . $username . ' '. $_SERVER['DOCUMENT_ROOT'] .'/../scripts/getInfo.sh';
     $resultVar = shell_exec('sudo -u ' . $username . ' '. $_SERVER['DOCUMENT_ROOT'] .'../scripts/getInfo.sh 2>$1');
+    echo $resultVar;
     $jsonResult = json_decode($resultVar, true);
     $balance = $jsonResult['balance'];
 
