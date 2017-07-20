@@ -22,7 +22,11 @@ $app->get('/transfer', function () use ($app) {
 
     $username = $app['chaincoinuser'];
     $username = escapeshellarg($username);
-    $resultVar = shell_exec('sudo -u ' . $username . ' /var/www/html/scripts/getInfo.sh 2>&1');
+    /* Find Our Scripts Directory */
+
+    $path = str_replace('/web/', '/', $_SERVER['DOCUMENT_ROOT']) . 'scripts/getInfo.sh';
+
+    $resultVar = shell_exec('sudo -u ' . $username . ' ' . $path);
     echo $resultVar;
     $jsonResult = json_decode($resultVar, true);
     $balance = $jsonResult['balance'];
