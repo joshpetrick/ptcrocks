@@ -11,11 +11,11 @@
 
     <div class="row">
         <div class="col-md-12" style="text-align: center; margin-bottom: 50px;">
-            {{ if balance < 1000 }}
+            {% if balance < 1000 %}
                 <h1 style="color:#ff9900;" data-toggle="tooltip" data-placement="left" title="Must have at least 1000CHC to start MasterNode - Please Zero Out Your Node.  You must transfer back exactly 1000CHC before node will start.">
-            {{ else }}
+            {%  else %}
                 <h1>
-            {{ endif }}
+            {%  endif %}
                 {{ balance }} CHC
             </h1>
         </div>
