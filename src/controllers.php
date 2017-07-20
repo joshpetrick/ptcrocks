@@ -20,17 +20,15 @@ $app->get('/transfer', function () use ($app) {
     $balance = 'Err';
     $errorMsg = null;
 
-    print_r($_SERVER);
-    echo getenv('chaincoinuser');
 
     /* Grab The Configured ChainCoin Linux User */
     if(!array_key_exists('chaincoinuser', $_ENV)){
         $errorMsg = "No ChainCoin User Configured - Please Set Env Var";
     }
     else{
-        $username = getenv('chaincoinuser');
+        $username = $app['chaincoinuser'];
         $username = escapeshellarg($username);
-        $resultVar = shell_exec('sudo -u ' . $username . ' /var/www/html/getInfo.sh');
+        $resultVar = shell_exec('sudo -u ' . $username . ' '. $_SERVER['DOCUMENT_ROOT'] .'../scripts/getInfo.sh');
         $jsonResult = json_decode($resultVar, true);
         $balance = $jsonResult['balance'];
     }
