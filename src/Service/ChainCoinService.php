@@ -31,7 +31,7 @@ class ChainCoinService
 
     public function transferCoins($address, $amount){
         /* Find Our Scripts Directory */
-        $path = $this->getInfo() . 'transferCoins.sh';
+        $path = $this->getScriptPath() . 'transferCoins.sh';
         $resultVar = shell_exec('sudo -u ' . $this->username . ' ' . $path . ' ' . $address . ' ' . $amount . ' 2>&1');
         return $resultVar;
     }
