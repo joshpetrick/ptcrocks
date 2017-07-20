@@ -17,4 +17,8 @@ $app['twig'] = $app->extend('twig', function ($twig, $app) {
     return $twig;
 });
 
+$app['chaincoin'] = function($app) {
+    return new \Service\ChainCoinService($app['chaincoinuser']);
+};
+
 return $app;
