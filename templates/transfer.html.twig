@@ -11,7 +11,13 @@
 
     <div class="row">
         <div class="col-md-12" style="text-align: center; margin-bottom: 50px;">
-            <h1>{{ balance }} CHC</h1>
+            {{ if balance < 1000 }}
+                <h1 style="color:#ff9900">
+            {{ else }}
+                <h1>
+            {{ endif }}
+                {{ balance }} CHC
+            </h1>
         </div>
     </div>
 
