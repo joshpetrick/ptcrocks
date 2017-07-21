@@ -23,7 +23,7 @@ $app->get('/transfer', function () use ($app) {
     $nodeInfo = $app['chaincoin']->getInfo();
     $balance = $nodeInfo['balance'];
 
-    return $app['twig']->render('transfer.html.twig', array('balance'=> 1000.00, 'errorMsg' => $errorMsg));
+    return $app['twig']->render('transfer.html.twig', array('balance'=> 999.00, 'errorMsg' => $errorMsg));
 })
 ->bind('transfer_coins');
 
