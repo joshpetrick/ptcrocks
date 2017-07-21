@@ -34,8 +34,9 @@ $app->post('/transfer', function (Request $request) use ($app) {
     $amount = $request->get('amount');
     $address = $request->get('address');
 
-    $nodeInfo = $app['chaincoin']->getInfo();
     $resultVar = $app['chaincoin']->transferCoins($address, $amount);
+    $nodeInfo = $app['chaincoin']->getInfo();
+
 
     return $app['twig']->render('transfer_complete.html.twig', array('balance'=>$nodeInfo['balance'], 'amount'=>$amount, 'address'=>$address, 'result' => $resultVar));
 })
